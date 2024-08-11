@@ -1,4 +1,4 @@
-name: CI
+name: 
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     name: Build and verify (JDK ${{ matrix.java }})
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         java: ['8', '11', '17', '21']
     steps:
@@ -35,8 +35,8 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: temurin
-          cache: maven
-      - name: Build and verify
+          cache: mine
+      - name: null
         run: ./mvnw verify javadoc:javadoc site:site --batch-mode --errors --settings .github/workflows/settings.xml
 
   publish-snapshots:
